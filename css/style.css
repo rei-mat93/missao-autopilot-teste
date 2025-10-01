@@ -1,0 +1,57 @@
+@import url(../css/display.css);
+
+@font-face {
+    font-family: "Sam3KRFont";
+    src: url(../fonts/Sam3KRFont.ttf);
+
+    font-family: "DS-DIGI";
+    src: url(../fonts/DS-DIGI.TTF);
+}
+
+*, 
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    background-image: url(../imgs/bg\ jogo.png);
+    background-size: cover;
+    font-family: Sam3KRFont;
+    font-size: 50px;
+    color: #ff0000;
+}
+
+.iniciar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    display: inline-block;
+}
+
+#botao {
+    width: 700px; 
+    transition: transform 0.2s ease-in-out;
+}
+
+#botao:hover {
+    transform: scale(1.009); 
+    z-index: 1;
+}
+
+.texto-botao {
+  position: absolute;
+  top: 50%;   
+  left: 50%;  
+  transform: translate(-50%, -50%);
+  color: #400F18;
+  font-size: 100px;
+  pointer-events: none; 
+  z-index: 2;
+}
+

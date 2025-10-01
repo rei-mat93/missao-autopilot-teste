@@ -1,0 +1,99 @@
+.display{
+    background-image: url(../imgs/display\ jogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 80vh;
+    width: 80vw;
+
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    padding: 13vh 10vw 8vh 7vw;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.desafio{
+    grid-column: 1/4;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.desafio-titulo{
+    grid-row: 1/2;
+
+    font-size: 60px;
+}
+
+.criptografia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.cifra-valor{
+    text-align: center;
+    font-size: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: solid 3px #f00;
+    width: 80px;
+    height: 80px;
+}
+
+.desafio-texto{
+    grid-row: 2/3;
+
+    text-align: center;
+    padding: 0 80px;
+}
+
+.senha{
+    grid-row: 3/4;
+    display: flex;
+    justify-content: center;
+}
+
+#senha{
+    background-color: #000;
+    border: 3px solid #f00;
+    width: 20vw;
+    height: 45px;
+    margin-left: 10px;
+
+    color: #fff;
+    font-size: 30px;
+    font-family: Sam3KRFont;
+    padding-left: 10px;
+}
+
+.cronometro{
+    grid-column: 4/5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.timer{
+    grid-row: 1/2;
+
+    font-family: DS-DIGI;
+    font-size: 100px;
+}
+
+.nivel{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nivel img{
+    width: 60px;
+}
