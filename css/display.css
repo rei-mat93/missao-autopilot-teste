@@ -91,9 +91,82 @@
 .nivel{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 35px;
+    margin-top: 55px;
 }
 
 .nivel img{
-    width: 60px;
+    width: 70px;
+}
+
+/* Genius */
+
+.quadrados{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.quadrado{
+    height: 150px;
+    width: 150px;
+    border: solid 3px #f00;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.quadrado:active{
+    transform: scale(0.98);
+    border: solid 5px #f00;
+    background-color: #272727;
+}
+
+.errou{
+    animation: errou 0.5s alternate 3;
+}
+
+@keyframes errou{
+    0% {background-color: #f00;}
+    100% {background-color: #444;}
+}
+
+@media screen and (max-width: 1366px) and (max-height: 768px) {
+    .display{
+        padding: 11vh 5vw 8vh 8vw;
+    }
+
+    .desafio-titulo{
+        font-size: 45px;
+    }
+
+    .cifra-valor{
+        font-size: 30px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .desafio-texto{
+        font-size: 35px;
+        padding: 0 20px;
+    }
+
+    #senha{
+        margin-top: 7px;
+        font-size: 20px;
+        height: 32px;
+    }
+
+    .timer{
+        font-size: 60px;
+    }
+
+    .nivel{
+        gap: 30px;
+        margin-top: 45px;
+    }
+
+    .nivel img{
+        width: 50px;
+    }
 }
