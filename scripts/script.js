@@ -195,7 +195,7 @@ iniciar.addEventListener('click', () => {
 
                                     if (ordemClique.length === respostaGenius.length) {
                                         mudarTela.style.backgroundImage = 'none';
-                                        mudarTela.style.background = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../imgs/bg-final.jpg") center/cover no-repeat';
+                                        mudarTela.style.background = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/imgs/bg-final.jpg") center/cover no-repeat';
                                         mudarTela.innerHTML = `
                                             <main id="console" role="main" aria-labelledby="panelTitle">
                                                 <div class="header">
