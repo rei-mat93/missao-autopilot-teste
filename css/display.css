@@ -169,4 +169,9 @@
     .nivel img{
         width: 50px;
     }
+
+    .quadrado{
+        height: 100px;
+        width: 100px;
+    }
 }
