@@ -39,7 +39,8 @@ function atualizarTimer() {
         clearInterval(contagem);
         timerElement.textContent = "00:00";
         mudarTela.innerHTML = '';
-        mudarTela.style.backgroundImage = 'url(/imgs/fim.png)'
+        showDiscoveryScreen();
+        return;
     }
 
     localStorage.setItem('tempoAtual', tempo);
@@ -79,6 +80,130 @@ function cifraDeCesar(texto, deslocamento){
 
     return resultado;
 }
+
+function createAlertScreen(){
+    const wrapper = document.createElement('div');
+    wrapper.className = 'overlay-screen';
+    wrapper.setAttribute('role','alertdialog');
+    wrapper.setAttribute('aria-live','assertive');
+
+    wrapper.innerHTML = `
+        <div class="panel" aria-label="Alerta Shinra — Hacker Detectado">
+            <div class="left">
+                <div class="brand">
+                    <div class="logo">SH</div>
+                    <div>
+                        <div class="title">Shinra Data Control — Unidade Sektor 7</div>
+                        <div style="font-size:12px;color:var(--muted)">Protocolo: Ω-7 — Intrusão detectada</div>
+                    </div>
+                </div>
+
+                <div class="big-alert"><span class="copy" data-text="VOCÊS FORAM DESCOBERTOS">VOCÊS FORAM DESCOBERTOS</span></div>
+                <div class="subtitle">A presença não autorizada foi identificada. Procedimentos de contenção iniciados.</div>
+
+                <div class="danger-strip">
+                    <div class="pill">NÍVEL: CRÍTICO</div>
+                    <div style="font-size:13px;color:#ffb7b9">Acionando bloqueios, registro de IPs e rastreamento.</div>
+                </div>
+
+                <div class="console" id="shinra-console" aria-live="polite">
+                    <div class="line muted">[sistema] Iniciando protocolo de contenção...</div>
+                    <div class="line">[sec] Registrando sessão — ID: <strong>#SH-${Math.floor(Math.random()*90000+10000)}</strong></div>
+                    <div class="line">[net] Rastreando ponto de origem...</div>
+                    <div class="line">[firewall] Regras dinâmicas aplicadas — Comunicação externa bloqueada.</div>
+                    <div class="line">[watch] Tentativas de evasão detectadas. Fornecendo amostras aos centros forenses.</div>
+                </div>
+            </div>
+
+            <aside class="right" role="region" aria-label="Controles de Alerta">
+                <div class="status-box">
+                    <div class="status-label">STATUS DO SISTEMA</div>
+                    <div class="status-value">ALERTA MÁXIMO</div>
+                    <div style="font-size:12px;color:var(--muted);margin-top:6px">Tempo desde detecção: <strong id="detectedTime">00:00</strong></div>
+                </div>
+
+                <div class="status-box">
+                    <div class="status-label">AÇÕES EXECUTADAS</div>
+                    <ul style="margin:8px 0 0 18px;color:#cfeee4;font-size:13px">
+                        <li>Isolamento de rede</li>
+                        <li>Dump de memória agendado</li>
+                        <li>Notificação ao Sektor Response</li>
+                    </ul>
+                </div>
+
+                <div class="btns">
+                    <button class="btn" id="btnLogs">Abrir logs</button>
+                    <button class="btn ack" id="btnAck">ENTENDIDO</button>
+                </div>
+
+                <div class="footer-note">Procedimento automático em execução — A intervenção manual é restrita.</div>
+            </aside>
+        </div>
+    `;
+
+    // comportamento interno: detectedTime ++
+    const detectedTime = wrapper.querySelector('#detectedTime');
+    let seconds = 0;
+    const t = setInterval(()=>{
+        seconds++;
+        const mm = String(Math.floor(seconds/60)).padStart(2,'0');
+        const ss = String(seconds%60).padStart(2,'0');
+        if (detectedTime) detectedTime.textContent = `${mm}:${ss}`;
+    },1000);
+
+    // botões e console
+    const btnAck = wrapper.querySelector('#btnAck');
+    const btnLogs = wrapper.querySelector('#btnLogs');
+    const consoleEl = wrapper.querySelector('#shinra-console');
+
+    btnLogs.addEventListener('click', ()=>{
+        consoleEl.innerHTML += '<div class="line">[audit] Mostrando amostras de sessão...</div>';
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+    });
+
+    btnAck.addEventListener('click', ()=>{
+        wrapper.style.transition = 'opacity 260ms ease';
+        wrapper.style.opacity = '0';
+        setTimeout(()=>{
+            if (wrapper.parentElement) wrapper.parentElement.removeChild(wrapper);
+            clearInterval(t);
+        },260);
+    });
+
+    // áudio sutil (opcional)
+    try{
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sawtooth'; o.frequency.value = 520;
+        g.gain.value = 0.02;
+        o.connect(g); g.connect(ctx.destination); o.start();
+        setTimeout(()=>{ o.stop(); ctx.close(); }, 1400);
+    }catch(e){ /* sem áudio */ }
+
+    // função para fechar programaticamente
+    wrapper.closeAlert = ()=>{ if (wrapper.parentElement) wrapper.parentElement.removeChild(wrapper); clearInterval(t); };
+
+    return wrapper;
+}
+
+function showDiscoveryScreen(){
+    if (document.querySelector('.overlay-screen')) return;
+    document.body.appendChild(createAlertScreen());
+}
+
+// ------------------ fim do bloco de alerta ------------------
+
+// OBS: quando o timer principal acabar, chame showDiscoveryScreen() em vez de createAlertScreen()
+// Exemplo: dentro de atualizarTimer() faça isso:
+//   if (tempo <= 0) {
+//       clearInterval(contagem);
+//       timerElement.textContent = "00:00";
+//       mudarTela.innerHTML = '';
+//       showDiscoveryScreen(); // <- mostra a tela corretamente
+//       return;
+//   }
+
 
 let binarioDaVez = sortearNumero(0, 3);
 
@@ -363,6 +488,7 @@ iniciar.addEventListener('click', () => {
                                         // fast red flash
                                         flashLed(ledRed, 120, 6);
                                         appendLog('Painel bloqueado. Contato de emergência requerido.');
+                                        showDiscoveryScreen();
                                         }
 
                                         // success flow
