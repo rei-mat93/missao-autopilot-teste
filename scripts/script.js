@@ -1,5 +1,5 @@
-const binarios = ['01010011 01001111 01000110 01010100 01010111 01000001 01010010 01000101', '01010000 01011001 01010100 01001000 01001111 01001110', '01000100 01000001 01010100 01000001 01010011 01000011 01001001 01000101 01001110 01000011 01000101', '01000110 01010010 01000001 01001101 01000101 01010111 01001111 01010010 01001011'];
-const respostaBinarios = ['software', 'python', 'datascience', 'framework'];
+const binarios = ['01010011 01001111 01000110 01010100 01010111 01000001 01010010 01000101', '01010000 01011001 01010100 01001000 01001111 01001110'];
+const respostaBinarios = ['software', 'python'];
 
 const respostaCifraDeCesar = ['codigo', 'desempenho', 'confiavel', 'seguranca', 'responsivo', 'sistema', 'criptografia', 'interface', 'aplicativo', 'desenvolvedor'];
 
@@ -240,7 +240,7 @@ iniciar.addEventListener('click', () => {
             const senhaCorreta = respostaBinarios[binarioDaVez];
 
             if (senhaInserida === senhaCorreta) {
-                    let cifraValor = sortearNumero(1, 10);
+                    let cifraValor = sortearNumero(1, 5);
                     let cifraDaVez = sortearNumero(0, respostaCifraDeCesar.length - 1);
                     let palavraCriptografada = respostaCifraDeCesar[cifraDaVez]
 
