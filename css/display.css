@@ -114,6 +114,9 @@
     border: solid 3px #f00;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .quadrado:active{
