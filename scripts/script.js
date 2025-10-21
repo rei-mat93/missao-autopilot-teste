@@ -279,11 +279,11 @@ iniciar.addEventListener('click', () => {
                                     <div class="desafio">
                                         <p class="desafio-titulo">3. Genius</p>
                                         <div class="quadrados">
-                                            <div class="quadrado" data-id="1"></div>
-                                            <div class="quadrado" data-id="2"></div>
-                                            <div class="quadrado" data-id="3"></div>
-                                            <div class="quadrado" data-id="4"></div>
-                                            <div class="quadrado" data-id="5"></div>
+                                            <div class="quadrado" data-id="1">1</div>
+                                            <div class="quadrado" data-id="2">2</div>
+                                            <div class="quadrado" data-id="3">3</div>
+                                            <div class="quadrado" data-id="4">4</div>
+                                            <div class="quadrado" data-id="5">5</div>
                                         </div>
                                     </div>
                                     <div class="cronometro">
