@@ -205,7 +205,7 @@ function showDiscoveryScreen(){
 //   }
 
 
-let binarioDaVez = sortearNumero(0, 3);
+let binarioDaVez = sortearNumero(0, 1);
 
 iniciar.addEventListener('click', () => {
     mudarTela.innerHTML = `<main class="display">
